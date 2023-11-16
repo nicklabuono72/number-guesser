@@ -1,19 +1,25 @@
 
 
-def main():
-    playGame()
+# def main():
+#     playGame()
 
 
 
 
-def generate_random_number():
-    import random
-    return(random.randint(1,100))
+# def generate_random_number():
+#     import random
+#     return(random.randint(1,100))
 
 
 def player_guess():
-    return(int(input("Guess a random number between 1-100: ")))
-    
+    guess = (input("Guess a random number between 1-100: "))
+    while(not guess.isdigit()):
+        print("Enter a NUMBER between 1-100")
+        return(player_guess())
+    while(int(guess) > 100):
+        print("Enter a NUMBER between 1-100")
+        return(player_guess())
+    return(int(guess))
 
 
 def give_feedback(secret_number,  guess):
@@ -32,6 +38,9 @@ def playGame():
 
     secret_number = generate_random_number()
     guess = player_guess()
+    
+
+    
     give_feedback(secret_number,  guess)
     x = 0
     amount_of_tries = 1
@@ -42,7 +51,8 @@ def playGame():
             y = 1
 
         elif(secret_number != guess):
-            guess = int(input("Guess a random number between 1-100: "))
+            # guess = int(input("Guess a random number between 1-100: "))
+            player_guess()
             give_feedback(secret_number,  guess)
             x += 1
             amount_of_tries += 1
@@ -53,13 +63,13 @@ def playGame():
         print("You lost")
     print("The number is " + str(secret_number))
     
-    playAgian = input(("Do you want to play again? Yes - 1 or No - 2: "))
+#     playAgian = input(("Do you want to play again? Yes - 1 or No - 2: "))
     
-    if(int(playAgian) == 1):
-        return(playGame())
-    else:
-        print("you suck")
+#     if(int(playAgian) == 1):
+#         return(playGame())
+#     else:
+#         print("you suck")
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
